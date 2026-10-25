@@ -1,0 +1,35 @@
+{
+  "appId": "com.mafk.retailflow",
+  "productName": "MAFK Retail-Flow POS",
+  "copyright": "MAFK-24/7",
+  "asar": true,
+  "npmRebuild": false,
+  "directories": {
+    "output": "release"
+  },
+  "files": ["dist/**/*", "assets/**/*", "package.json"],
+  "extraResources": [
+    {
+      "from": "../web/dist",
+      "to": "web"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "deleteAppDataOnUninstall": false
+  },
+  "publish": null,
+  "executableName": "MAFK-RetailFlow-POS"
+}
