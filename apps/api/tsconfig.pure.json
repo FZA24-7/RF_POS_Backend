@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-pure", "rootDir": "src", "types": ["node"], "noEmit": true },
+  "include": ["src"],
+  "exclude": ["src/infra/prisma/**", "src/composition/production.ts", "src/bin/**"]
+}
