@@ -1,0 +1,46 @@
+{
+  "name": "mafk-24-7-retail-flow-pos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MAFK-24/7 Retail-Flow POS - multi-tenant retail POS platform",
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=22.12.0 <23",
+    "pnpm": ">=10.34.5 <11"
+  },
+  "scripts": {
+    "db:generate": "pnpm --filter @mafk/database run generate",
+    "db:validate": "pnpm --filter @mafk/database run validate",
+    "db:migrate:dev": "pnpm --filter @mafk/database run migrate:dev",
+    "db:migrate:deploy": "pnpm --filter @mafk/database run migrate:deploy",
+    "db:seed": "pnpm --filter @mafk/database run seed",
+    "build:libs": "pnpm --filter @mafk/shared --filter @mafk/validation --filter @mafk/database run build",
+    "build": "pnpm run build:libs && pnpm --filter @mafk/api --filter @mafk/web --filter @mafk/desktop run build",
+    "typecheck": "pnpm run build:libs && pnpm -r --workspace-concurrency=1 run typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm --filter @mafk/shared --filter @mafk/validation run build && pnpm --filter @mafk/shared --filter @mafk/api --filter @mafk/web --filter @mafk/desktop run test",
+    "scan:secrets": "node scripts/secret-scan.mjs",
+    "dev:api": "pnpm --filter @mafk/api run dev",
+    "bootstrap:master": "pnpm --filter @mafk/api run bootstrap:master",
+    "verify": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run test && pnpm run build && pnpm run scan:secrets && pnpm run scan:security && pnpm run scan:windows",
+    "dev:web": "pnpm --filter @mafk/web run dev",
+    "scan:windows": "node scripts/windows-guard.mjs",
+    "e2e": "node e2e/phase6.e2e.mjs",
+    "e2e:desktop": "node e2e/desktop.e2e.mjs",
+    "desktop": "pnpm --filter @mafk/desktop run start",
+    "desktop:dist": "pnpm --filter @mafk/desktop run dist:win",
+    "scan:security": "node scripts/security-scan.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "globals": "17.12.0",
+    "playwright-core": "1.56.1",
+    "prettier": "3.9.9",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0"
+  }
+}

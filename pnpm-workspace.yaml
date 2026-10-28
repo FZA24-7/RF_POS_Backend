@@ -1,0 +1,18 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# pnpm 10 blocks dependency lifecycle scripts unless explicitly allowed.
+onlyBuiltDependencies:
+  - argon2
+  - esbuild
+  - prisma
+  - '@prisma/engines'
+  - '@prisma/client'
+
+# Security: raise transitive dev-tooling dependencies to patched releases (see docs/SECURITY-REVIEW.md).
+overrides:
+  mysql2: '>=3.23.1'
+  source-map-js: '>=1.2.2'
+  deepmerge-ts: '>=8.0.0'
+  postcss-selector-parser: '>=7.1.6'
